@@ -16,8 +16,9 @@
  */
 package io.nuun.plugin.web;
 
-import io.nuun.kernel.core.Kernel;
-
+import static io.nuun.kernel.core.NuunCore.createKernel;
+import static io.nuun.kernel.core.NuunCore.newKernelConfiguration;
+import io.nuun.kernel.api.Kernel;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -69,7 +70,12 @@ public class NuunServletContextListener extends GuiceServletContextListener
         String[] paramsArray = new String[params.size()];
         params.toArray(paramsArray);
 
-        kernel = Kernel.createKernel(paramsArray).withContainerContext(servletContext). build();
+        kernel = createKernel(
+                //
+                newKernelConfiguration() //
+                  .containerContext(servletContext)
+                  
+                );
 
         kernel.init();
 
