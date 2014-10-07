@@ -16,7 +16,7 @@
  */
 package io.nuun.plugin.web;
 
-import io.nuun.kernel.api.plugin.AbstractPlugin;
+import io.nuun.kernel.core.AbstractPlugin;
 
 import java.net.URL;
 import java.util.Set;
