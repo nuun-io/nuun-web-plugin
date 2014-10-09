@@ -81,7 +81,7 @@ public class NuunServletContextListener extends GuiceServletContextListener
 
         kernel.start();
 
-        return kernel.getObjectGraph().as(Injector.class);
+        return kernel.objectGraph().as(Injector.class);
     }
 
     @Override
