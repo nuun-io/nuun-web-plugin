@@ -88,9 +88,10 @@ public class NuunServletContextListener extends GuiceServletContextListener
 	public void contextDestroyed(ServletContextEvent servletContextEvent)
     {
 
-        kernel.stop();
-
-        // Injector injector = (Injector) servletContext.getAttribute(Injector.class.getName());
+        if (kernel != null && kernel.isStarted())
+        {
+            kernel.stop();
+        }
 
         super.contextDestroyed(servletContextEvent);
     }

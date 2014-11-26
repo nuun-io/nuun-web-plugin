@@ -27,14 +27,11 @@ import org.reflections.util.ClasspathHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.inject.servlet.WorkAroundModule;
-
 public class NuunWebPlugin extends AbstractPlugin
 {
 
     private Logger         logger = LoggerFactory.getLogger(NuunWebPlugin.class);
     
-    private WorkAroundModule module = null;
     private Set<URL> additionalClasspath = null;
 
     @Override
@@ -57,10 +54,11 @@ public class NuunWebPlugin extends AbstractPlugin
             URL forWebInfClasses = ClasspathHelper.forWebInfClasses(servletContext);
             webCPUrls.add(forWebInfClasses);
             
-          this.additionalClasspath = webCPUrls;
+          additionalClasspath = webCPUrls;
+          logger.debug("NuunWebPlugin added " + webCPUrls.size() + " urls for the classpath scan.");
             
-        }   
+        }
         
-        return  this.additionalClasspath != null ? this.additionalClasspath : super.computeAdditionalClasspathScan() ;
+        return  additionalClasspath != null ? additionalClasspath : super.computeAdditionalClasspathScan() ;
     }
 }
